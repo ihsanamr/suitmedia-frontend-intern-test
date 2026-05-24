@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import bgBanner from "../assets/banner-img.jpg";
 
 function Banner() {
   const [offsetY, setOffsetY] = useState(0);
@@ -19,7 +20,7 @@ function Banner() {
       <div
         className="absolute inset-0 bg-cover bg-center transition-transform duration-150 ease-out"
         style={{
-          backgroundImage: "url('src/assets/banner-img.jpg')",
+          backgroundImage: `url(${bgBanner})`,
           transform: `translateY(${offsetY * 0.3}px)`,
         }}
       />
