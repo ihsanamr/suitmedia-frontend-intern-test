@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import suitmediaLogo from "../assets/logo-suitmedia.png";
 
 function Header() {
   const [shown, setShown] = useState(true);
@@ -46,7 +47,7 @@ function Header() {
     >
       <div className="max-w-6xl mx-auto flex justify-between items-center h-full">
         <img
-          src="src/assets/logo-suitmedia.png"
+          src={suitmediaLogo}
           alt="Logo"
           className="h-10 md:h-12 w-auto cursor-pointer"
           onClick={() => {
