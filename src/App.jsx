@@ -15,8 +15,7 @@ import Contact from "./pages/Contact";
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-gray-50 text-gray-900">
-        {/* Global sticky header */}
+      <div className="min-h-screen bg-gray-50 text-gray-900 pt-20">
         <Header />
 
         {/* Route handling */}
@@ -25,19 +24,53 @@ function App() {
           <Route
             path="/"
             element={
-              <>
+              <main id="main-content">
                 <Banner />
                 <ListPost />
-              </>
+              </main>
             }
           />
 
-          {/* Dummy pages */}
-          <Route path="/work" element={<Work />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/careers" element={<Careers />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route
+            path="/work"
+            element={
+              <main>
+                <Work />
+              </main>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <main>
+                <About />
+              </main>
+            }
+          />
+          <Route
+            path="/services"
+            element={
+              <main>
+                <Services />
+              </main>
+            }
+          />
+          <Route
+            path="/careers"
+            element={
+              <main>
+                <Careers />
+              </main>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <main>
+                <Contact />
+              </main>
+            }
+          />
         </Routes>
       </div>
     </BrowserRouter>

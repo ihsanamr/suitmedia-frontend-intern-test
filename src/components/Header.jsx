@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import suitmediaLogo from "../assets/logo-suitmedia.png";
+import suitmediaLogo from "../assets/logo-suitmedia.webp";
 
 function Header() {
   const [shown, setShown] = useState(true);
@@ -49,6 +49,8 @@ function Header() {
         <img
           src={suitmediaLogo}
           alt="Logo"
+          width="150"
+          height="60"
           className="h-10 md:h-12 w-auto cursor-pointer"
           onClick={() => {
             window.scrollTo({ top: 0, behavior: "smooth" });

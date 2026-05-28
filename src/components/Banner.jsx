@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import bgBanner from "../assets/banner-img.jpg";
+import bgBanner from "../assets/banner-img.webp";
 
 function Banner() {
   const [offsetY, setOffsetY] = useState(0);
@@ -16,11 +16,13 @@ function Banner() {
 
   return (
     <div className="relative w-full h-[80vh] overflow-hidden pt-16 [clip-path:polygon(0_0,100%_0,100%_85%,0_100%)]">
-      {/* Background with parallax effect */}
-      <div
-        className="absolute inset-0 bg-cover bg-center transition-transform duration-150 ease-out"
+      {/* Image with parallax effect */}
+      <img
+        src={bgBanner}
+        alt="Banner"
+        fetchPriority="high"
+        className="absolute inset-0 w-full h-full object-cover ease-out"
         style={{
-          backgroundImage: `url(${bgBanner})`,
           transform: `translateY(${offsetY * 0.3}px)`,
         }}
       />

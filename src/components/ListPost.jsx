@@ -20,8 +20,10 @@ function ListPost() {
 
     const fetchData = async () => {
       try {
+        const baseUrl = import.meta.env.VITE_API_BASE_URL || "";
+
         const response = await axios.get(
-          `https://suitmedia-backend.suitdev.com/api/ideas?page[number]=${page}&page[size]=${size}&append[]=small_image&append[]=medium_image&sort=${sort}`,
+          `${baseUrl}/ideas?page[number]=${page}&page[size]=${size}&append[]=small_image&append[]=medium_image&sort=${sort}`,
         );
         setPosts(response.data.data);
         setTotalItems(response.data.meta.total);
@@ -41,11 +43,11 @@ function ListPost() {
         <div>
           <p className="text-gray-600">
             Showing{" "}
-            <span className="font-bold text-orange-600">
+            <span className="font-bold text-orange-800">
               {(page - 1) * size + 1}
             </span>{" "}
             -{" "}
-            <span className="font-bold text-orange-600">
+            <span className="font-bold text-orange-800">
               {Math.min(page * size, totalItems)}
             </span>{" "}
             of <span className="font-bold">{totalItems}</span> posts
@@ -56,15 +58,18 @@ function ListPost() {
         <div className="flex w-full md:w-auto justify-between md:justify-end gap-4 flex-wrap">
           {/* Items per page */}
           <div className="flex items-center gap-2">
-            <span className="text-gray-600 font-bold">Show per page:</span>
+            <label className="text-gray-600 font-bold" htmlFor="size-select">
+              Show per page:
+            </label>
             <div className="relative">
               <select
+                id="size-select"
                 value={size}
                 onChange={(e) => {
                   setSize(Number(e.target.value));
                   setPage(1);
                 }}
-                className="appearance-none border-2 border-orange-400 bg-orange-50 text-orange-600 px-4 py-2 pr-10 rounded-full cursor-pointer shadow-sm transition-all duration-300 ease-in-out hover:border-orange-500 hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-300"
+                className="appearance-none border-2 border-orange-400 bg-orange-50 text-orange-800 px-4 py-2 pr-10 rounded-full cursor-pointer shadow-sm transition-all duration-300 ease-in-out hover:border-orange-500 hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-300"
               >
                 <option value={10}>10</option>
                 <option value={20}>20</option>
@@ -79,14 +84,17 @@ function ListPost() {
 
           {/* Sorting options */}
           <div className="flex items-center gap-2">
-            <span className="text-gray-600 font-bold">Sort by:</span>
+            <label className="text-gray-600 font-bold" htmlFor="sort-select">
+              Sort by:
+            </label>
             <div className="relative">
               <select
+                id="sort-select"
                 value={sort}
                 onChange={(e) => {
                   setSort(e.target.value);
                 }}
-                className="appearance-none border-2 border-orange-400 bg-orange-50 text-orange-600 px-4 py-2 pr-10 rounded-full cursor-pointer shadow-sm transition-all duration-300 ease-in-out hover:border-orange-500 hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-300"
+                className="appearance-none border-2 border-orange-400 bg-orange-50 text-orange-800 px-4 py-2 pr-10 rounded-full cursor-pointer shadow-sm transition-all duration-300 ease-in-out hover:border-orange-500 hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-300"
               >
                 <option value="-published_at">Newest (Terbaru)</option>
                 <option value="published_at">Oldest (Terlama)</option>
@@ -106,7 +114,7 @@ function ListPost() {
           const imageUrl =
             post.medium_image?.[0]?.url ||
             post.small_image?.[0]?.url ||
-            `https://picsum.photos/id/${post.id % 30}/400/300`;
+            `https://picsum.photos/id/${post.id % 30}/300/200`;
 
           return (
             <div
@@ -122,14 +130,14 @@ function ListPost() {
                   className="w-full absolute inset-0 h-full object-cover"
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = `https://picsum.photos/id/${post.id % 30}/400/300`;
+                    e.target.src = `https://picsum.photos/id/${post.id % 30}/300/200`;
                   }}
                 />
               </div>
 
               {/* Content details */}
               <div className="p-4 flex flex-col grow">
-                <span className="text-xs text-gray-400 font-medium mb-1">
+                <span className="text-xs text-gray-600 font-medium mb-1">
                   {formatDate(post.published_at)}
                 </span>
 
