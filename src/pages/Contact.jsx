@@ -1,7 +1,7 @@
-export default function About() {
+export default function Contact() {
   return (
-    <div className="pt-32 text-center text-2xl font-bold text-gray-800">
+    <main className="pt-32 text-center text-2xl font-bold text-gray-800">
       Contact Page
-    </div>
+    </main>
   );
 }

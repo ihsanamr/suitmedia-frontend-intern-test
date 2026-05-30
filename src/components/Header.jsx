@@ -1,15 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import suitmediaLogo from "../assets/logo-suitmedia.webp";
 
-function Header() {
+export default function Header() {
   const [shown, setShown] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
   // Scroll position state
   const [isScrolled, setIsScrolled] = useState(false);
-
   const [isOpen, setIsOpen] = useState(false);
+
+  const lastScrollY = useRef(0);
 
   // Navigation menus
   const menus = ["Work", "About", "Services", "Ideas", "Careers", "Contact"];
@@ -18,7 +17,7 @@ function Header() {
     const controlNavbar = () => {
       if (isOpen) return;
       // 1. Hide/show navbar on scroll
-      if (window.scrollY > lastScrollY && window.scrollY > 100) {
+      if (window.scrollY > lastScrollY.current && window.scrollY > 100) {
         setShown(false);
       } else {
         setShown(true);
@@ -31,12 +30,13 @@ function Header() {
         setIsScrolled(false);
       }
 
-      setLastScrollY(window.scrollY);
+      lastScrollY.current = window.scrollY;
     };
 
     window.addEventListener("scroll", controlNavbar);
+
     return () => window.removeEventListener("scroll", controlNavbar);
-  }, [lastScrollY, isOpen]);
+  }, [isOpen]);
 
   return (
     <header
@@ -108,5 +108,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;

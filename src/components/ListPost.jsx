@@ -4,7 +4,7 @@ import { formatDate } from "../utils/format";
 import Pagination from "./Pagination";
 import { ChevronDown } from "lucide-react";
 
-function ListPost() {
+export default function ListPost() {
   const url = new URLSearchParams(window.location.search);
 
   const [page, setPage] = useState(Number(url.get("page") || 1));
@@ -159,5 +159,3 @@ function ListPost() {
     </div>
   );
 }
-
-export default ListPost;

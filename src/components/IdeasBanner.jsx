@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import bgBanner from "../assets/banner-img.webp";
 
-function Banner() {
-  const [offsetY, setOffsetY] = useState(0);
+export default function Banner() {
+  const imgRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentOffsetY = window.scrollY;
-      setOffsetY(currentOffsetY);
+
+      if (imgRef.current) {
+        imgRef.current.style.transform = `translateY(${currentOffsetY * 0.3}px)`;
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -18,13 +21,11 @@ function Banner() {
     <div className="relative w-full h-[80vh] overflow-hidden pt-16 [clip-path:polygon(0_0,100%_0,100%_85%,0_100%)]">
       {/* Image with parallax effect */}
       <img
+        ref={imgRef}
         src={bgBanner}
         alt="Banner"
         fetchPriority="high"
         className="absolute inset-0 w-full h-full object-cover ease-out"
-        style={{
-          transform: `translateY(${offsetY * 0.3}px)`,
-        }}
       />
 
       {/* Overlay content */}
@@ -37,5 +38,3 @@ function Banner() {
     </div>
   );
 }
-
-export default Banner;

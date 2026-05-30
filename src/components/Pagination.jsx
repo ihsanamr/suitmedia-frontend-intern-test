@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-function Pagination({ page, size, totalItems, setPage }) {
+export default function Pagination({ page, size, totalItems, setPage }) {
   const totalPages = Math.ceil(totalItems / size);
 
   // Hide pagination if there is only 1 page or no items
@@ -81,5 +81,3 @@ function Pagination({ page, size, totalItems, setPage }) {
     </div>
   );
 }
-
-export default Pagination;
